@@ -19,6 +19,15 @@ class PostController {
       res.status(404).json({ error });
     }
   }
+
+  static async editPost(req, res) {
+    try {
+      const updatedPost = await Post.findByIdAndUpdate(req.params.id, req.body);
+      res.json(updatedPost);
+    } catch (error) {
+      res.status(500).json({ error });
+    }
+  }
 }
 
 module.exports = PostController;
