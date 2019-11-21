@@ -28,6 +28,15 @@ class PostController {
       res.status(500).json({ error });
     }
   }
+
+  static async deletePost(req, res) {
+    try {
+      const deletedPost = await Post.findByIdAndRemove(req.params.id);
+      res.json(deletedPost);
+    } catch (error) {
+      res.status(500).json({ error });
+    }
+  }
 }
 
 module.exports = PostController;
